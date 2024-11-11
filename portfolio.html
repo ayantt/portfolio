@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tasnif Taussuk</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #070707;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .intro-text {
+            font-size: 40px;
+            color: #ffffff;
+            margin-left: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-left: 100px;
+            width: 200px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .method-container {
+            flex: 3; 
+        }
+        .json-container {
+            flex: 7;
+        }
+        .response-container {
+            background-color: #646464;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #646464;
+            border-radius: 5px 5px 5px 5px;
+        }
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .response-status {
+            font-weight: bold;
+        }
+        .json-output {
+            background-color: #2d2d2d;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 0 0 5px 5px;
+            font-family: monospace;
+            overflow-x: auto;
+            max-height: 450px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <p class="intro-text">Hello There,<br>I'm Tasnif Taussuk<br>I'm a Backend Engineer.</p>
+    </div>
+
+    <div class="main-container">
+        <div class="method-container">
+            <button onclick="displayJson('GET /portfolio/about', aboutData)">Who Am I</button><br>
+            <button onclick="displayJson('GET /portfolio/experience', experienceData)">Where Was I</button><br>
+            <button onclick="displayJson('GET /portfolio/skills', skillData)">What I Can Do</button><br>
+            <button onclick="displayJson('GET /portfolio/clients', clientData)">Whom I Worked With</button><br>
+            <button onclick="displayJson('GET /portfolio/education', educationData)">What I Was Taught</button><br>
+            <button onclick="displayJson('GET /portfolio/contact', contactData)">How You Can Find Me</button><br>
+        </div>
+        <div class="json-container">
+            <div id="responseContainer" class="response-container" style="display: none;">
+                <div class="response-header">
+                    <span id="responseTitle"></span>
+                    <span class="response-status">200 successful</span>
+                </div>
+                <pre id="jsonOutput" class="json-output"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const aboutData = 
+            {
+                "name": "Tasnif Taussuk",
+                "age": 30,
+                "language": [
+                    {
+                        "name": "Bengali",
+                        "level": "Native",
+                    },
+                    {
+                        "name": "English",
+                        "level": "conversational",
+                    }
+                ],
+                "status": "Looking for work",
+                "about": "I’m very passionate about Computer Science from the moment I laid my hands on a computer first time when I was a kid. I love to encounter anything with logical and rational thinking. I dream to be an excellent software engineer. That’s why I’m looking for a software engineer position where I can learn more every day. I want to put myself where everyone is smarter than me. That will help me grow as not only a good engineer but also as a good person.",
+                "motto": "Every new discovery is just a reminder - We're all small & stupid."            
+            }
+        ;
+
+        const experienceData = 
+            {
+                "experience": [
+                    {
+                        "company": "Gononet Online Solutions Ltd.",
+                        "position": "Software Engineer",
+                        "start_date": "01-04-2024",
+                        "end_date": "01-01-1970",
+                        "is_present": true,
+                        "stack": [
+                            "Golang",
+                            "PostgreSQL"
+                        ]
+                    },
+                    {
+                        "company": "Naas Solutions Ltd.",
+                        "position": "Software Engineer",
+                        "start_date": "01-03-2022",
+                        "end_date": "31-03-2024",
+                        "is_present": false,
+                        "stack": [
+                            ".Net",
+                            "Oracle"
+                        ]
+                    },
+                    {
+                        "company": "Data Head Pvt. Ltd.",
+                        "position": "Software Engineer",
+                        "start_date": "01-09-2019",
+                        "end_date": "31-01-2021",
+                        "is_present": false,
+                        "stack": [
+                            ".Net",
+                            "MS SQL"
+                        ]
+                    },
+                    {
+                        "company": "Grameen-Intel Social Business",
+                        "position": "Intern SQA",
+                        "start_date": "01-10-2017",
+                        "end_date": "31-01-2018",
+                        "is_present": false,
+                        "stack": []
+                    }
+                ]      
+            }
+        ;
+
+        const educationData = 
+            {
+                "institute": "Southeast University",
+                "degree": "Bachelor of Science",
+                "discipline": "Computer Science and Engineering",
+                "passing_year": 2018,
+                "location": "Dhaka, Bangladesh"
+            }
+        ;
+
+        const skillData = 
+            {
+                "language": [
+                    "C#",
+                    "Go",
+                    "SQL",
+                    "HTML",
+                    "JavaScript",
+                    "CSS",
+                    "Java"
+                ],
+                "database": [
+                    "MS SQL Server",
+                    "Oracle",
+                    "PostgreSQL",
+                    "MySQL",
+                    "MongoDB"
+                ],
+                "framework": [
+                    ".Net Core",
+                    "ASP .Net",
+                    "Echo",
+                    "MVC"
+                ],
+                "tool": [
+                    "REST",
+                    "gRPC",
+                    "Ajax",
+                    "AWS",
+                    "IIS",
+                    "Git",
+                    "Docker",
+                    "Jira"
+                ],
+            }
+        ;
+
+        const contactData = 
+            {
+                "e_mail": "ayantt@live.com",
+                "phone": "+880 1676-386289",
+                "linkedin": "https://www.linkedin.com/in/ayantt11",
+                "website": "https://www.ayantt.com",
+                "address": {
+                    "city": "Dhaka",
+                    "zip": "1216",
+                    "country": "Bangladesh",
+                    "continent" : "Asia",
+                    "planet": "Earth",
+                    "galaxy": "Milky Way"
+                }
+            }
+        ;
+
+        const clientData = 
+            {
+                "client": [
+                    "Banglalink Digital Communications Ltd.",
+                    "Delta Life Insurance Company Limited",
+                    "Meghna Life Insurance Company Limited",
+                    "Robi Axiata Limited",
+                    "Shah Cement",
+                    "GDS Chemical",       
+                    "Sunlife Insurance Company Limited",
+                    "Sunflower Life Insurance Company Limited",             
+                    "National Tea Company Limited",
+                ]
+            }
+        ;
+
+        function displayJson(title, data) {
+            const jsonOutput = document.getElementById('jsonOutput');
+            const responseContainer = document.getElementById('responseContainer');
+            document.getElementById('responseTitle').textContent = title;
+            jsonOutput.textContent = JSON.stringify(data, null, 2);
+            responseContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
