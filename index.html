@@ -9,11 +9,13 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Basic styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #070707;
+            color: #ffffff;
             padding: 20px;
         }
         .header {
@@ -24,11 +26,23 @@
         }
         .intro-text {
             font-size: 40px;
-            color: #ffffff;
             margin-left: 50px;
-			font-family: "Courier Prime", monospace;
-			font-weight: 400;
-			font-style: normal;
+            font-family: "Courier Prime", monospace;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-right: 50px;
+        }
+        .social-icons a {
+            color: #ffffff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: #007bff;
         }
         button {
             padding: 10px 20px;
@@ -63,7 +77,6 @@
             padding: 20px;
             border-radius: 5px;
             border: 1px solid #646464;
-            border-radius: 5px 5px 5px 5px;
         }
         .response-header {
             display: flex;
@@ -88,13 +101,30 @@
             max-height: 450px;
             white-space: pre-wrap;
         }
+        /* JSON key-value coloring */
+        .json-key {
+            color: #9cdcfe;
+        }
+        .json-value {
+            color: #ce9178;
+        }
+        .json-string {
+            color: #dcdcaa;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <p class="intro-text">Hello There,<br>I'm Tasnif Taussuk<br>I'm a Backend Engineer.</p>
+ 
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ayantt11" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ayantt" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.ayantt.dev/resume.pdf" target="_blank" title="Resume"><i class="fas fa-file-alt"></i></a>
+        </div>
     </div>
+    
 
     <div class="main-container">
         <div class="method-container">
@@ -117,9 +147,12 @@
     </div>
 
     <script>
-        const aboutData = 
-            {
-                "name": "Tasnif Taussuk",
+        const hireData = {
+            "status": "Looking for work",
+            "status": "Looking for work",
+            "status": "Looking for work",
+        }
+        const aboutData = { "name": "Tasnif Taussuk",
                 "age": 30,
                 "language": [
                     {
@@ -133,14 +166,12 @@
                 ],
                 "status": "Looking for work",
                 "about": "I’m very passionate about Computer Science from the moment I laid my hands on a computer first time when I was a kid. I love to encounter anything with logical and rational thinking. I dream to be an excellent software engineer. That’s why I’m looking for a software engineer position where I can learn more every day. I want to put myself where everyone is smarter than me. That will help me grow as not only a good engineer but also as a good person.",
-                "motto": "Every new discovery is just a reminder - We're all small & stupid."            
-            }
-        ;
-
+                "motto": "Every new discovery is just a reminder - We're all small & stupid."        
+            };
         const experienceData = 
-            {
-                "experience": [
-                    {
+                {
+                    "experience": [
+                        {
                         "company": "Gononet Online Solutions Ltd.",
                         "position": "Software Engineer",
                         "start_date": "01-04-2024",
@@ -150,8 +181,8 @@
                             "Golang",
                             "PostgreSQL"
                         ]
-                    },
-                    {
+                        },
+                        {
                         "company": "Naas Solutions Ltd.",
                         "position": "Software Engineer",
                         "start_date": "01-03-2022",
@@ -161,8 +192,8 @@
                             ".Net",
                             "Oracle"
                         ]
-                    },
-                    {
+                        },
+                        {
                         "company": "Data Head Pvt. Ltd.",
                         "position": "Software Engineer",
                         "start_date": "01-09-2019",
@@ -172,32 +203,28 @@
                             ".Net",
                             "MS SQL"
                         ]
-                    },
-                    {
+                        },
+                        {
                         "company": "Grameen-Intel Social Business",
                         "position": "Intern SQA",
                         "start_date": "01-10-2017",
                         "end_date": "31-01-2018",
                         "is_present": false,
                         "stack": []
-                    }
-                ]      
-            }
-        ;
-
+                        }
+                    ]
+                };
         const educationData = 
-            {
-                "institute": "Southeast University",
-                "degree": "Bachelor of Science",
-                "discipline": "Computer Science and Engineering",
-                "passing_year": 2018,
-                "location": "Dhaka, Bangladesh"
-            }
-        ;
-
+                { 
+                    "institute": "Southeast University",
+                    "degree": "Bachelor of Science",
+                    "discipline": "Computer Science and Engineering",
+                    "passing_year": 2018,
+                    "location": "Dhaka, Bangladesh" 
+                };
         const skillData = 
-            {
-                "language": [
+                { 
+                    "language": [
                     "C#",
                     "Go",
                     "SQL",
@@ -205,73 +232,97 @@
                     "JavaScript",
                     "CSS",
                     "Java"
-                ],
-                "database": [
-                    "MS SQL Server",
-                    "Oracle",
-                    "PostgreSQL",
-                    "MySQL",
-                    "MongoDB"
-                ],
-                "framework": [
-                    ".Net Core",
-                    "ASP .Net",
-                    "Echo",
-                    "MVC"
-                ],
-                "tool": [
-                    "REST",
-                    "gRPC",
-                    "Ajax",
-                    "AWS",
-                    "IIS",
-                    "Git",
-                    "Docker",
-                    "Jira"
-                ],
-            }
-        ;
-
+                    ],
+                    "database": [
+                        "MS SQL Server",
+                        "Oracle",
+                        "PostgreSQL",
+                        "MySQL",
+                        "MongoDB"
+                    ],
+                    "framework": [
+                        ".Net Core",
+                        "ASP .Net",
+                        "Echo",
+                        "MVC"
+                    ],
+                    "tool": [
+                        "REST",
+                        "gRPC",
+                        "Ajax",
+                        "AWS",
+                        "IIS",
+                        "Git",
+                        "Docker",
+                        "Jira"
+                    ] 
+                };
         const contactData = 
-            {
-                "e_mail": "ayantt@live.com",
-                "phone": "+880 1676-386289",
-                "linkedin": "https://www.linkedin.com/in/ayantt11",
-                "website": "https://www.ayantt.com",
-                "address": {
-                    "city": "Dhaka",
-                    "zip": "1216",
-                    "country": "Bangladesh",
-                    "continent" : "Asia",
-                    "planet": "Earth",
-                    "galaxy": "Milky Way"
-                }
-            }
-        ;
-
+                { 
+                    "e_mail": "ayantt@live.com",
+                    "phone": "+880 1676-386289",
+                    "linkedin": "https://www.linkedin.com/in/ayantt11",
+                    "website": "https://www.ayantt.com",
+                    "address": 
+                    {
+                        "city": "Dhaka",
+                        "zip": "1216",
+                        "country": "Bangladesh",
+                        "continent" : "Asia",
+                        "planet": "Earth",
+                        "galaxy": "Milky Way"
+                    } 
+                };
         const clientData = 
-            {
-                "client": [
-                    "Banglalink Digital Communications Ltd.",
-                    "Delta Life Insurance Company Limited",
-                    "Meghna Life Insurance Company Limited",
-                    "Robi Axiata Limited",
-                    "Shah Cement",
-                    "GDS Chemical",       
-                    "Sunlife Insurance Company Limited",
-                    "Sunflower Life Insurance Company Limited",             
-                    "National Tea Company Limited",
-                ]
+                { 
+                    "client": 
+                    [
+                        "Banglalink Digital Communications Ltd.",
+                        "Delta Life Insurance Company Limited",
+                        "Meghna Life Insurance Company Limited",
+                        "Robi Axiata Limited",
+                        "Shah Cement",
+                        "GDS Chemical",       
+                        "Sunlife Insurance Company Limited",
+                        "Sunflower Life Insurance Company Limited",             
+                        "National Tea Company Limited",
+                    ] 
+                };
+
+        // Convert JSON object to HTML with colored keys and values
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
             }
-        ;
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|\b\d+\b)/g, function (match) {
+                let cls = 'json-value';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'json-key';
+                    } else {
+                        cls = 'json-string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'json-boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'json-null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
 
         function displayJson(title, data) {
             const jsonOutput = document.getElementById('jsonOutput');
             const responseContainer = document.getElementById('responseContainer');
             document.getElementById('responseTitle').textContent = title;
-            jsonOutput.textContent = JSON.stringify(data, null, 2);
+            
+            // Format JSON with custom indentation
+            const prettyJson = JSON.stringify(data, null, 4);
+            jsonOutput.innerHTML = syntaxHighlight(prettyJson);
             responseContainer.style.display = 'block';
         }
+
     </script>
 </body>
 </html>
