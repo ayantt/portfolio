@@ -1,0 +1,11 @@
+
+> tasnif-portfolio@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 14256, using available port 3008 instead.
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3008
+   - Network:      http://192.168.68.2:3008
+
+ ✓ Starting...
+ ✓ Ready in 1659ms

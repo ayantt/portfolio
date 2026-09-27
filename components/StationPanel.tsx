@@ -19,15 +19,10 @@ export default function StationPanel({ index }: StationPanelProps) {
           {s.type} · {index + 1}/{STATIONS.length}
         </div>
         <h2>{s.name}</h2>
-        <p className="role text-mut">
-          {s.role}
-          {s.period && (
-            <>
-              {" · "}
-              <span className="font-mono text-xs uppercase tracking-[0.06em]">{s.period}</span>
-            </>
-          )}
-        </p>
+        <div className="text-fg">
+          <p className="font-medium">{s.role}</p>
+          {s.period && <p className="font-mono text-xs uppercase tracking-[0.06em] text-mut">{s.period}</p>}
+        </div>
         <p className="text-sm">{s.desc}</p>
         {s.result && (
           <div className="result-block">
@@ -50,12 +45,13 @@ export default function StationPanel({ index }: StationPanelProps) {
         {s.future ? (
           <>
             <h3 className="font-mono text-xs uppercase tracking-[0.06em] text-mut">Carried into the unknown</h3>
+            {/* "On board" is the full active set, which already includes carried capabilities. */}
             <PassengerStateRow label="On board" cls="continuing" prefix="" names={[...current]} />
           </>
         ) : (
           <>
             <h3 className="font-mono text-xs uppercase tracking-[0.06em] text-mut">Passengers at {s.short}</h3>
-            {index === 0 && <p className="text-mut">None yet. The train is waiting.</p>}
+            {index === 0 && <p className="text-mut">The train is waiting.</p>}
             {boarding.length > 0 && (
               <PassengerStateRow label="Boarding" cls="boarding" prefix="+ " names={boarding.map(([n]) => n)} />
             )}

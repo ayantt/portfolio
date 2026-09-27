@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { STATIONS } from "@/data/stations";
 import { scrollToStation, prefersReducedMotion } from "@/lib/scroll";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elementName: string]: any;
+    }
+  }
+}
+
 interface HeaderProps {
   activeIndex: number;
 }

@@ -1,19 +1,13 @@
-import type { Station } from "@/lib/types";
+import type { PassengerEntry, Station } from "@/lib/types";
 
-/**
- * The career journey, in order. Each station lists the passengers
- * (skills) present at that point in the journey — a bare string means
- * the skill continues from the previous station, a [name, reason] tuple
- * means it boards here. Boarding/continuing/exiting is derived at
- * render time by diffing adjacent stations' passenger sets.
- */
 export const STATIONS: Station[] = [
   {
     id: "southeast",
     name: "Southeast University",
-    short: "Southeast Univ.",
+    short: "Southeast University",
     type: "Origin station",
     role: "B.Sc. in Computer Science",
+    period: "2013–2018",
     desc: "The start of the journey.",
     work: [],
     passengers: [],
@@ -24,15 +18,19 @@ export const STATIONS: Station[] = [
     short: "Datahead",
     type: "Employer",
     role: "Software Engineer",
-    desc: "Business systems: ERP, provident fund and accounting.",
+    period: "Sep 2019 — Oct 2021",
+    desc: "Business systems: ERP, provident fund and accounting applications.",
     work: [
       { heading: "Systems", items: ["ERP applications", "Provident Fund systems", "Accounting applications"] },
       { heading: "Engineering", items: ["Backend development", "Complex reporting queries"] },
+      { heading: "Worked with", items: ["Delta Life Insurance Ltd.", "Robi Axiata Ltd.", "Shah Cement Industries Ltd.", "GDS Chemicals Ltd.", "Elevate Global Ltd.", "National Tea Company Ltd.", "Sunlife Insurance Company Ltd."] },
     ],
     passengers: [
       ["C#", ".NET application code"],
-      [".NET", "ERP, Provident Fund and accounting apps"],
+      [".NET Framework", "ERP, Provident Fund and accounting apps"],
+      ["ASP.NET Core", "Provident Fund"],
       ["SQL Server", "Database behind the ERP systems"],
+      ["Oracle", "Database behind the ERP systems"],
       ["Dapper", "Data access in .NET"],
       ["Entity Framework", "Data access in .NET"],
       ["Backend Development", "Core role focus"],
@@ -47,18 +45,20 @@ export const STATIONS: Station[] = [
     type: "Employer",
     role: "Software Engineer",
     period: "Mar 2022 — Mar 2024",
-    desc: "Telecom, queueing and KPI systems, with early Golang R&D.",
-    note: "Go boards here",
+    desc: "Telecom, queueing and KPI systems.",
+    note: "",
     work: [
       { heading: "Systems", items: ["Telecom Commission Generation", "Smart Queue", "Employee KPI"] },
-      { heading: "Also", items: ["Golang R&D", "Client proof-of-concept work"] },
     ],
     passengers: [
-      "C#",
-      ".NET",
-      "Backend Development",
+      ["C#", ".NET application code"],
+      [".NET Framework", "ERP, Provident Fund and accounting apps"],
+      ["ASP.NET Core", "Provident Fund"],
       ["Oracle", "Database for NAAS systems"],
-      ["Golang", "R&D and client proofs of concept"],
+      ["Entity Framework", "Data access in .NET"],
+      ["Backend Development", "Core role focus"],
+      ["Reporting", "Complex reporting queries for Employee KPI system"],
+      ["MySQL", "Database behind Smart Queue Management systems"],
     ],
   },
   {
@@ -124,7 +124,7 @@ export const STATIONS: Station[] = [
 ];
 
 /** Passenger name regardless of whether the entry is a bare string or a [name, reason] tuple. */
-export function passengerName(entry: Station["passengers"][number]): string {
+export function passengerName(entry: PassengerEntry): string {
   return Array.isArray(entry) ? entry[0] : entry;
 }
 
@@ -133,9 +133,19 @@ export function passengerSet(i: number): Set<string> {
   return new Set(STATIONS[i].passengers.map(passengerName));
 }
 
+/** The reason shown when a passenger boards, if the entry carries one. */
+export function passengerReason(name: string, i: number): string {
+  const entry = STATIONS[i].passengers.find((e) => passengerName(e) === name);
+  return Array.isArray(entry) ? entry[1] : "";
+}
+
 /** Passengers that board at station i (i.e. weren't present at i-1). */
 export function arrivals(i: number): [string, string][] {
-  return STATIONS[i].passengers.filter((e): e is [string, string] => Array.isArray(e));
+  if (i === 0) return STATIONS[i].passengers.map((e) => [passengerName(e), passengerReason(passengerName(e), i)]);
+  const prev = passengerSet(i - 1);
+  return STATIONS[i].passengers
+    .filter((e) => !prev.has(passengerName(e)))
+    .map((e) => [passengerName(e), passengerReason(passengerName(e), i)]);
 }
 
 /** Passengers present at station i-1 but not at station i. */

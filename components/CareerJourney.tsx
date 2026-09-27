@@ -137,7 +137,7 @@ export default function CareerJourney() {
       idx !== null
         ? `At ${STATIONS[idx].short}`
         : k < 0.15
-        ? `• Departing ${STATIONS[i].short}`
+        ? `Departing ${STATIONS[i].short}`
         : k > 0.85
         ? `Now arriving — ${STATIONS[i + 1].short}`
         : "In transit"
@@ -209,7 +209,7 @@ export default function CareerJourney() {
           </div>
         </div>
 
-        <StationPanel index={shownIndex} />
+        <StationPanel index={2} />
       </div>
     </section>
   );
