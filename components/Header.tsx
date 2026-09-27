@@ -64,7 +64,7 @@ export default function Header({ activeIndex }: HeaderProps) {
           </a>
           <a
             className="cv-link"
-            href="https://ayantt.dev/resume"
+            href="https://ayantt.dev/Tasnif_Taussuk_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume in a new tab"

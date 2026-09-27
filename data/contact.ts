@@ -1,7 +1,7 @@
 export const CONTACT = {
   location: "Dhaka, Bangladesh",
   closingLine: "Next stop: the next system we build.",
-  resumeHref: "https://ayantt.dev/resume",
+  resumeHref: "https://ayantt.dev/Tasnif_Taussuk_CV.pdf",
   links: [
     { label: "ayantt.dev", href: "https://ayantt.dev/" },
     { label: "LinkedIn", href: "https://linkedin.com/in/ayantt11/" },
