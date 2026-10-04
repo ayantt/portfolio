@@ -20,7 +20,7 @@ export default function StationPanel({ index }: StationPanelProps) {
         </div>
         <h2>{s.name}</h2>
         <div className="text-fg">
-          <p className="font-medium">{s.role}</p>
+          <p className="font-medium text-fg">{s.role}</p>
           {s.period && <p className="font-mono text-xs uppercase tracking-[0.06em] text-mut">{s.period}</p>}
         </div>
         <p className="text-sm">{s.desc}</p>

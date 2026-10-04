@@ -42,7 +42,11 @@ const Train = forwardRef<TrainHandle, TrainProps>(function Train({ stationIndex,
       carRef.current?.classList.toggle("open", open);
     },
     setStatus(text) {
-      if (statusRef.current) statusRef.current.textContent = text;
+      if (statusRef.current) {
+        statusRef.current.textContent = text;
+        const lowerText = text.toLowerCase();
+        statusRef.current.classList.toggle("is-warning", lowerText.includes("arriving") || lowerText.includes("departing"));
+      }
     },
     setStopped(stopped) {
       signalRef.current?.classList.toggle("stopped", stopped);
