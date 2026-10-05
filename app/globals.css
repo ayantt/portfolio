@@ -9,7 +9,6 @@
   --rule: #cfcabd;
   --panel: #ebe7dd;
   --acc: #b8590a;
-  --warn: #c48b00;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -22,7 +21,6 @@
     --rule: #2a2f38;
     --panel: #151a22;
     --acc: #f2a33a;
-    --warn: #ffcc00;
   }
 }
 :root[data-theme="dark"] {
@@ -32,7 +30,6 @@
   --rule: #2a2f38;
   --panel: #151a22;
   --acc: #f2a33a;
-  --warn: #ffcc00;
 }
 
 html {
@@ -226,10 +223,6 @@ body {
   color: var(--acc);
   font-size: 13px;
   font-weight: 600;
-  transition: color 0.15s;
-}
-.train-head b.is-warning {
-  color: var(--warn);
 }
 .train-head .count {
   margin-left: auto;
