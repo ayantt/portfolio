@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ProjectNode from "./ProjectNode";
 import { PROJECTS } from "@/data/projects";
-import { STATIONS } from "@/data/stations";
 
 function elbowPath(x: number, y: number, bendX: number): string {
   return `M20 170 H${bendX} V${y} H${x}`;
@@ -18,14 +17,14 @@ export default function ProjectBranch() {
 
   return (
     <section className="pg" id="projects">
-      <div className="font-mono text-xs uppercase tracking-[0.06em] text-mut">Branch routes — from Gononet</div>
+      <div className="font-mono text-xs uppercase tracking-[0.06em] text-mut">Branch routes — independent lines</div>
       <h2 className="my-1.5 text-3xl font-bold tracking-tight">Projects</h2>
       <p className="mb-7 max-w-[60ch] text-mut">
-        What I&rsquo;ve built outside of work. Each one branches off the current station — its position says nothing
-        about when it was built.
+        What I&rsquo;ve built outside of work. These run as their own lines, parallel to the career line — not tied
+        to any single station.
       </p>
 
-      <div className={`branch${hoverId ? " hover" : ""}`} role="group" aria-label="Project branch routes from Gononet">
+      <div className={`branch${hoverId ? " hover" : ""}`} role="group" aria-label="Independent project branch routes">
         <svg viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
           {PROJECTS.map((p) => (
             <path
@@ -38,7 +37,7 @@ export default function ProjectBranch() {
         </svg>
         <div className="trunk-label font-mono text-xs uppercase tracking-[0.06em]">
           <i className="trunk-dot" aria-hidden="true" />
-          GONONET
+          INDEPENDENT LINE
         </div>
         <div className="project-nodes">
           {PROJECTS.map((p) => (
@@ -103,12 +102,9 @@ export default function ProjectBranch() {
           </div>
           <div>
             <div className="fit-forward">
-              <b>Where it fits</b>
+              <b>Independent line</b>
               <br />
-              {STATIONS.slice(0, 4)
-                .map((s) => s.short)
-                .join(" → ")}{" "}
-              → <b>{open.name}</b>
+              Built on my own time — not a stop on the career line above.
             </div>
           </div>
         </div>

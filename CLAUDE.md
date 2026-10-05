@@ -44,10 +44,14 @@ are **passengers** that board and leave the train, and personal projects are
 | Blueprint / control room | The Architecture section — grid-backed cards + a vertical block diagram |
 | Platform / final stop | The Contact section, `.pg.final` |
 
-**Projects are NOT stations.** They live in a separate section
-(`#projects`) below the journey and are explicitly framed in the copy as
-"Branch routes — from Gononet" with "its position says nothing about when it
-was built."
+**Projects are NOT stations, and are NOT tied to any single station.** They
+live in a separate section (`#projects`) below the journey and are explicitly
+framed in the copy as "Branch routes — independent lines": independent
+work that runs parallel to the career line rather than branching off one
+specific stop (earlier revisions framed this as branching off Gononet — that
+tie was removed; the trunk label now reads "INDEPENDENT LINE" and the detail
+panel's second column says "Independent line — Built on my own time — not a
+stop on the career line above").
 
 **Architecture is NOT on the career line.** It is a separate section
 (`#architecture`), framed as "Control room."
