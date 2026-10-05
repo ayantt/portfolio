@@ -209,7 +209,7 @@ export default function CareerJourney() {
           </div>
         </div>
 
-        <StationPanel index={2} />
+        <StationPanel index={shownIndex} />
       </div>
     </section>
   );
