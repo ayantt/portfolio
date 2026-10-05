@@ -246,6 +246,9 @@ body {
 .signal.stopped {
   background: #2fa66a;
 }
+.signal.warning {
+  background: #f39c12;
+}
 
 .pax-row {
   position: relative;

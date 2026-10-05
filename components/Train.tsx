@@ -11,8 +11,8 @@ export interface TrainHandle {
   setOpen(open: boolean): void;
   /** Update the one-line status ("At Gononet", "In transit", ...). */
   setStatus(text: string): void;
-  /** Red while moving, green while stopped at a station. */
-  setStopped(stopped: boolean): void;
+  /** Red while moving, green while stopped at a station, yellow while departing/arriving. */
+  setSignal(state: "stopped" | "warning" | "moving"): void;
 }
 
 interface TrainProps {
@@ -48,8 +48,11 @@ const Train = forwardRef<TrainHandle, TrainProps>(function Train({ stationIndex,
         statusRef.current.classList.toggle("is-warning", lowerText.includes("arriving") || lowerText.includes("departing"));
       }
     },
-    setStopped(stopped) {
-      signalRef.current?.classList.toggle("stopped", stopped);
+    setSignal(state) {
+      const el = signalRef.current;
+      if (!el) return;
+      el.classList.toggle("stopped", state === "stopped");
+      el.classList.toggle("warning", state === "warning");
     },
   }));
 

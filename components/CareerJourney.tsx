@@ -131,8 +131,10 @@ export default function CareerJourney() {
       Object.assign(prog.style, { left: "18px", top: `${Y[0]}px`, width: "4px", height: `${cy - Y[0]}px` });
     }
 
+    const departingOrArriving = idx === null && (k < 0.15 || k > 0.85);
+
     car.setOpen(idx !== null);
-    car.setStopped(idx !== null);
+    car.setSignal(idx !== null ? "stopped" : departingOrArriving ? "warning" : "moving");
     car.setStatus(
       idx !== null
         ? `At ${STATIONS[idx].short}`
