@@ -1,4 +1,13 @@
 import type { Metadata, Viewport } from "next";
+// Self-hosted via @fontsource (bundled font files, no runtime call to Google Fonts)
+// rather than next/font/google, matching the CSS variables globals.css already expects.
+import "@fontsource/space-grotesk/latin-400.css";
+import "@fontsource/space-grotesk/latin-500.css";
+import "@fontsource/space-grotesk/latin-600.css";
+import "@fontsource/space-grotesk/latin-700.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-500.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
 import "./globals.css";
 
 const SITE_URL = "https://ayantt.dev";

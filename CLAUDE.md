@@ -217,10 +217,16 @@ npm run lint     # next lint (eslint-config-next, core-web-vitals)
 | Issue | Where |
 |---|---|
 | None | — |
-| CV URL hardcoded separately from `CONTACT.resumeHref` | `Header.tsx` |
 | No `/resume` route despite the documented URL | `app/` |
-| Fonts referenced but never loaded (`next/font` absent) | `layout.tsx` + `tailwind.config.ts` |
-| Global `JSX.IntrinsicElements` augmentation, a leftover | `Header.tsx` top |
 | Detail panels can't be collapsed | `ProjectBranch.tsx`, `ArchitectureGallery.tsx` |
 | No `openGraph.images` / `twitter.images` | `app/layout.tsx` |
+
+Resolved since the last pass: fonts are now self-hosted via `@fontsource`
+(`layout.tsx` imports the weight-specific CSS; `body { font-family:
+var(--font-grotesk) }` in `globals.css` actually applies it — previously the
+CSS variable was defined but never assigned to anything, so the page silently
+fell back to the browser default). The CV link in `Header.tsx` imports
+`CONTACT.resumeHref` again instead of hardcoding its own copy of the URL.
+The stray global `JSX.IntrinsicElements` augmentation at the top of
+`Header.tsx` is gone.
 | Journey runway is a hardcoded `h-[500vh]` | `CareerJourney.tsx` |

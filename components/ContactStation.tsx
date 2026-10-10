@@ -20,7 +20,7 @@ export default function ContactStation() {
             </a>
           </li>
         ))}
-        <li title="Resume will be available here.">
+        <li>
           <a
             href={CONTACT.resumeHref}
             target="_blank"

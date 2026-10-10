@@ -7,7 +7,7 @@ import type { ArchitectureCardData } from "@/lib/types";
 export const ARCHITECTURE: ArchitectureCardData[] = [
   {
     id: "flowdocs-arch",
-    icon: "⌷",
+    icon: "flow",
     name: "FlowDocs",
     tag: "Document workflow engineering",
     blocks: [
@@ -26,7 +26,7 @@ export const ARCHITECTURE: ArchitectureCardData[] = [
   },
   {
     id: "erp-arch",
-    icon: "⌸",
+    icon: "erp",
     name: "ERP Service Architecture",
     tag: "Backend systems at Gononet",
     disclaimer:
@@ -47,7 +47,7 @@ export const ARCHITECTURE: ArchitectureCardData[] = [
   },
   {
     id: "db-arch",
-    icon: "⌗",
+    icon: "db",
     name: "Database Thinking",
     tag: "PostgreSQL index optimization",
     blocks: [

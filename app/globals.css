@@ -9,6 +9,8 @@
   --rule: #cfcabd;
   --panel: #ebe7dd;
   --acc: #b8590a;
+  --font-grotesk: "Space Grotesk", system-ui, sans-serif;
+  --font-plex: "IBM Plex Mono", ui-monospace, monospace;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -39,6 +41,7 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
+  font-family: var(--font-grotesk);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -75,6 +78,16 @@ body {
 .route {
   position: relative;
   margin: 0 clamp(16px, 4vw, 48px);
+}
+.route::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.18;
+  pointer-events: none;
 }
 
 .rail,
@@ -128,7 +141,14 @@ body {
 .label-name {
   display: block;
   font-size: 15px;
-  line-height: 1.2;
+  line-height: 1.3;
+}
+.label-role {
+  display: block;
+  color: var(--fg);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 2px;
 }
 .label-period {
   display: block;
@@ -144,10 +164,13 @@ body {
 .station-btn.active .station-dot {
   box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--acc);
 }
+.station-btn:focus-visible .station-dot {
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--acc);
+}
 
 .now-tag {
   display: inline-block;
-  font: 500 9px "IBM Plex Mono", monospace;
+  font: 600 10px "IBM Plex Mono", monospace;
   letter-spacing: 0.06em;
   color: var(--acc);
   vertical-align: middle;
@@ -156,7 +179,7 @@ body {
 
 .label-note {
   display: block;
-  font: 400 11px "IBM Plex Mono", monospace;
+  font: 400 11.5px "IBM Plex Mono", monospace;
   color: var(--mut);
   opacity: 0;
   transition: opacity 0.3s;
@@ -173,6 +196,7 @@ body {
 }
 
 @media (max-width: 759px) {
+  .label-role,
   .label-period,
   .label-note {
     display: none;
@@ -212,7 +236,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--rule);
@@ -221,11 +245,13 @@ body {
 }
 .train-head b {
   color: var(--acc);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
+  letter-spacing: -0.005em;
 }
 .train-head .count {
   margin-left: auto;
+  color: var(--mut);
 }
 
 .signal {
@@ -250,13 +276,20 @@ body {
   gap: 5px;
   align-content: flex-start;
   flex: 1;
+  /* Mid-transition, boarding + continuing + not-yet-removed leaving chips can
+     briefly outnumber the steady-state manifest and overflow the fixed-height
+     car. Clip rather than spill onto the rail/stations below — a leaving
+     chip's translateY(90px) exit then reads as stepping off under the train,
+     not a layout bug. */
+  overflow: hidden;
 }
 
 .chip {
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 500;
   border: 1px solid var(--fg);
   background: var(--bg);
-  padding: 2px 7px;
+  padding: 3px 8px;
   border-radius: 3px;
   line-height: 1.4;
 }
@@ -365,8 +398,8 @@ body {
   margin-right: 8px;
 }
 .pax-pill {
-  font: 500 11px "IBM Plex Mono", monospace;
-  padding: 1px 6px;
+  font: 500 12px "IBM Plex Mono", monospace;
+  padding: 2px 7px;
   border: 1px solid var(--fg);
   border-radius: 3px;
   margin: 0 4px 4px 0;
@@ -434,18 +467,14 @@ body {
   }
 }
 @media (max-width: 1099px) {
-  .g {
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-  }
+  /* Below 1100px the work-group heading ("RESPONSIBILITIES", "WORKED WITH")
+     no longer fits a fixed-width label beside its text without wrapping
+     into the paragraph, so stack heading above text instead of a row. */
   .g h3 {
-    flex: none;
-    width: 76px;
-    margin: 0 !important;
+    margin: 0 0 2px !important;
   }
   .g p {
-    margin: 0 0 4px;
+    margin: 0 0 10px;
   }
 }
 
@@ -527,10 +556,17 @@ body {
 .project-node.flagship .node-dot {
   width: 20px;
   height: 20px;
+  border-color: var(--acc);
 }
 .project-node b {
   font-size: 14px;
   line-height: 1.2;
+}
+.project-node.flagship b {
+  font-size: 15px;
+}
+.branch svg path.flagship-path {
+  stroke-width: 4;
 }
 .project-node small {
   color: var(--mut);
@@ -570,7 +606,7 @@ body {
   margin: 2px 0;
   font-size: 24px;
 }
-.detail-panel .role {
+.detail-panel .project-role {
   color: var(--mut);
   margin: 0 0 10px;
 }
@@ -605,6 +641,23 @@ body {
   font-size: 13px;
 }
 .fit-forward b {
+  color: var(--fg);
+  font-weight: 500;
+}
+/* Footer note in the Projects detail panel ("Independent line — ..."). A
+   direct grid child of .detail-panel (unlike .fit-forward above, which is
+   nested a level deeper inside .col-passengers in the station panel) so it
+   actually spans both columns as a footer instead of sitting in a tall,
+   mostly-empty second column. */
+.branch-note {
+  grid-column: 1 / -1;
+  border-top: 1px dashed var(--rule);
+  margin-top: 14px;
+  padding-top: 14px;
+  color: var(--mut);
+  font-size: 13px;
+}
+.branch-note b {
   color: var(--fg);
   font-weight: 500;
 }
@@ -893,14 +946,16 @@ body {
 }
 
 .nav-link {
-  font-size: 12px;
+  font: 500 12px "IBM Plex Mono", monospace;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 8px 0;
+  padding: 8px 2px;
   border-bottom: 2px solid transparent;
   text-decoration: none;
+  color: var(--fg);
 }
 .nav-link:hover,
+.nav-link:focus-visible,
 .nav-link.current {
   border-color: var(--fg);
 }

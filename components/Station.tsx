@@ -36,7 +36,7 @@ export default function Station({ station, visited, active, style, innerRef }: S
           {station.short}
           {station.current && <span className="now-tag">◉ current</span>}
         </b>
-        <small className="label-period">{station.role}</small>
+        <small className="label-role">{station.role}</small>
         <small className="label-period">{station.period}</small>
         {station.note && <em className="label-note">{station.note}</em>}
       </span>

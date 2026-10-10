@@ -31,7 +31,9 @@ export default function ProjectBranch() {
               key={p.id}
               id={`branch-path-${p.id}`}
               d={elbowPath(p.x, p.y, p.bendX)}
-              className={highlighted === p.id ? "active highlighted" : ""}
+              className={[p.flagship && "flagship-path", highlighted === p.id && "active highlighted"]
+                .filter(Boolean)
+                .join(" ")}
             />
           ))}
         </svg>
@@ -59,7 +61,7 @@ export default function ProjectBranch() {
               {open.flagship ? "Flagship project" : "Project"}
             </div>
             <h3>{open.name}</h3>
-            <p className="role text-mut">{open.role}</p>
+            <p className="project-role text-mut">{open.role}</p>
 
             <div className="browser-frame" aria-hidden="true">
               <div className="bar">
@@ -100,12 +102,10 @@ export default function ProjectBranch() {
               ))}
             </p>
           </div>
-          <div>
-            <div className="fit-forward">
-              <b>Independent line</b>
-              <br />
-              Built on my own time — not a stop on the career line above.
-            </div>
+          <div className="branch-note">
+            <b>Independent line</b>
+            <br />
+            Built on my own time — not a stop on the career line above.
           </div>
         </div>
       )}

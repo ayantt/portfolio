@@ -2,19 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { STATIONS } from "@/data/stations";
+import { CONTACT } from "@/data/contact";
 import { scrollToStation, prefersReducedMotion } from "@/lib/scroll";
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      [elementName: string]: any;
-    }
-  }
-}
 
 interface HeaderProps {
   activeIndex: number;
 }
+
+/** Short mobile nav labels — presentational only, derived from station id, not station data. */
+const MOBILE_ABBR: Record<string, string> = {
+  southeast: "SE",
+  datahead: "DH",
+  naas: "NA",
+  gononet: "GN",
+  future: "FU",
+};
 
 export default function Header({ activeIndex }: HeaderProps) {
   const [clock, setClock] = useState("");
@@ -42,7 +44,7 @@ export default function Header({ activeIndex }: HeaderProps) {
 
   return (
     <>
-      <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6 md:px-12">
+      <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6 lg:px-12">
         <h1 className="m-0 text-xl leading-tight tracking-tight sm:text-2xl">
           TASNIF TAUSSUK
           <small className="mt-1 block text-[13px] font-normal text-mut">
@@ -58,21 +60,21 @@ export default function Header({ activeIndex }: HeaderProps) {
               aria-label={`Go to station ${i + 1}: ${s.name}`}
               onClick={() => go(i)}
             >
-              <span className="sm:hidden">{i + 1}</span>
+              <span className="sm:hidden">{MOBILE_ABBR[s.id] ?? s.short.slice(0, 2).toUpperCase()}</span>
               <span className="hidden sm:inline">{s.short}</span>
             </button>
           ))}
           <a href="#projects" className="nav-link">
             <span className="hidden sm:inline">Projects</span>
-            <span className="sm:hidden">P</span>
+            <span className="sm:hidden">PR</span>
           </a>
           <a href="#architecture" className="nav-link">
             <span className="hidden sm:inline">Architecture</span>
-            <span className="sm:hidden">A</span>
+            <span className="sm:hidden">AR</span>
           </a>
           <a
             className="cv-link"
-            href="https://ayantt.dev/Tasnif_Taussuk_CV.pdf"
+            href={CONTACT.resumeHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume in a new tab"
@@ -81,7 +83,7 @@ export default function Header({ activeIndex }: HeaderProps) {
           </a>
         </nav>
       </header>
-      <div className="legend-bar flex flex-wrap items-baseline gap-x-6 gap-y-1 px-4 pb-2 font-mono text-xs uppercase tracking-[0.06em] text-mut sm:px-6 md:px-12">
+      <div className="legend-bar flex flex-wrap items-baseline gap-x-6 gap-y-1 px-4 pb-2 font-mono text-xs uppercase tracking-[0.06em] text-mut sm:px-6 lg:px-12">
         <span className="now-legend legend-train" />
         <span>Train = career</span>
         <span className="now-legend legend-station" />

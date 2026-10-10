@@ -65,6 +65,7 @@ export interface ArchitectureResult {
 
 export interface ArchitectureCardData {
   id: string;
+  /** Key into the small inline-SVG icon set in ArchitectureCard.tsx ("flow" | "erp" | "db"). */
   icon: string;
   name: string;
   tag: string;

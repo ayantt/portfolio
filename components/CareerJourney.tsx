@@ -61,7 +61,7 @@ export default function CareerJourney() {
       const marginLeft =
         window.innerWidth < 1100 ? parseFloat(getComputedStyle(route).marginLeft || "0") : 0;
       const a = cw / 2 + 12 - marginLeft;
-      const ty = Math.max(ch + 16, (H - ch - 104) / 2 + ch + 8);
+      const ty = Math.max(ch + 32, (H - ch - 104) / 2 + ch + 8);
       const X = STATIONS.map((_, i) => a + (i * (W - 2 * a)) / (count - 1));
       const Y = STATIONS.map(() => ty);
       posRef.current = { X, Y };
@@ -124,7 +124,7 @@ export default function CareerJourney() {
     const cy = Y[i] + (Y[i + 1] - Y[i]) * k;
 
     if (!mobile) {
-      car.setPosition(cx - cw / 2, Y[0] - ch - 8);
+      car.setPosition(cx - cw / 2, Y[0] - ch - 24);
       Object.assign(prog.style, { left: `${X[0]}px`, top: `${Y[0] - 2}px`, width: `${cx - X[0]}px`, height: "4px" });
     } else {
       car.setPosition(116, cy - ch / 2);
