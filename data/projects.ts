@@ -58,4 +58,21 @@ export const PROJECTS: Project[] = [
     capabilities: ["Data visualization", "Football analytics", "Frontend/backend integration"],
     links: [{ label: "View source", href: "https://github.com/ayantt/pitch-board" }],
   },
+  {
+    id: "amjonotar-kopal",
+    x: 900,
+    y: 290,
+    bendX: 720,
+    name: "Amjonotar Kopal",
+    tag: "Satirical board game",
+    domain: "amjonotar-kopal.ayantt.dev",
+    what: "A satirical, Bangladesh-inspired Monopoly-style political board game.",
+    role: "Independent project",
+    stack: [],
+    capabilities: [],
+    links: [
+      { label: "Play game", href: "https://amjonotar-kopal.ayantt.dev/" },
+      { label: "View source", href: "https://github.com/ayantt/amjonotar-kopal" },
+    ],
+  },
 ];
